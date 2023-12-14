@@ -59,7 +59,7 @@ module Top(
   
   
  //   FrequencyMeter U10(.Fxin(Fxin),
-   //                  .Clk(Clk),
+   //                  .Clk(Clk), 
   //                   .Frequency(Frequency));
                      
 //     PeriodicMeter U12(.Pxin(Pxin),
