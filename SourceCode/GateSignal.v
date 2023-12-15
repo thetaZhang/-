@@ -19,11 +19,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 module GateSignal (
-    input Clk;
-    Output Gate_Signal
-);
+    input Clk,
+    output reg Gate_Signal
+    );
     reg[27:0] Clk_Count;
-    reg Gate_Signal;
     always @(posedge Clk)   //set 1s gate signal
     begin
         if (Clk_Count>=27'd100000000) 
