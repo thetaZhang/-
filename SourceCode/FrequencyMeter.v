@@ -42,11 +42,8 @@ module FrequencyMeter (
         Wave_Count<=32'b0;
     end
 
-
-
-
     GateSignal myGateSignal (
         .Clk(Clk),
-        .Gate_Signal(Gate_Signal)
-    )
+        .Gate_Signal(Gate_Signal));
+
 endmodule
