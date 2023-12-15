@@ -34,12 +34,15 @@ module FrequencyMeter (
     begin
         if (Gate_Signal)
             Wave_Count<=Wave_Count+1'b1;        
+        else 
+            Wave_Count<=32'b0;
+
     end
 
     always @(negedge Gate_Signal)
     begin
         Frequency<=Wave_Count;
-        Wave_Count<=32'b0;
+        
     end
 
     GateSignal myGateSignal (
