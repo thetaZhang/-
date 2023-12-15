@@ -5,7 +5,7 @@
 // 
 // Create Date: 2023/12/15 23:31:25
 // Design Name: 
-// Module Name: GateSignal
+// Module Name: FrequencyMeter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -25,17 +25,5 @@ module FrequencyMeter (
     inout Clk,
     output Frequency
     );
-    reg[27:0] Clk_Count;
-    reg Gate_Signal;
-    always @(posedge Clk)   //set 1s gate signal
-    begin
-        if (Clk_Count>=27'd100000000) 
-            begin
-                Clk_Count<=28'b0;
-                Gate_Signal<=~Gate_Signal;
-            end
-        else
-            Clk_Count<=Clk_Count+1'b1;
-        
-    end
+    
 endmodule
