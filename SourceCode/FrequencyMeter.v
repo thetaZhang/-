@@ -23,7 +23,30 @@
 module FrequencyMeter (
     input Fxin,
     inout Clk,
-    output Frequency
+    output reg[31:0] Frequency
     );
     
+    reg Gate_Signal;
+    reg[31:0] Wave_Count;
+
+
+    always @(posedge Fxin) 
+    begin
+        if (Gate_Signal)
+            Wave_Count<=Wave_Count+1'b1;        
+    end
+
+    always @(negedge Gate_Signal)
+    begin
+        Frequency<=Wave_Count;
+        Wave_Count<=32'b0;
+    end
+
+
+
+
+    GateSignal myGateSignal (
+        .Clk(Clk),
+        .Gate_Signal(Gate_Signal)
+    )
 endmodule

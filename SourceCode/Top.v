@@ -34,15 +34,22 @@ module Top(
     );
     reg [31:0]Number=32'h12345678;    //example of a number for display ,you can modify here for your number to display.;
     wire Fxin,Pxin,Dxin;
-    wire [15:0]Frequency;
-    wire [15:0]Periodic;
-    wire [15:0]Duty;
+    reg [31:0]Frequency;
+    //wire [15:0]Periodic;
+    //wire [15:0]Duty;
     
     assign DpLeft=DigitalSel[6];
     assign DpRight=DigitalSel[2];
     //these two sentence above is to control the dp for display, as above value of these sentences, 
     // the result is show as 1.2345.678, you can modify the subscript number of DigitlaSel for your own needs.
- 
+
+
+    always @(Frequency)
+    begin
+        Number<=Frequency;
+    end
+
+
     Display myDisplay(.Clk(Clk),    
                       .En(1), 
                       .Digital1(Number[3:0]),
@@ -58,9 +65,9 @@ module Top(
                       .A_2_GLeft4(A_2_GLeft4));
   
   
- //   FrequencyMeter U10(.Fxin(Fxin),
-   //                  .Clk(Clk), 
-  //                   .Frequency(Frequency));
+    FrequencyMeter U10(.Fxin(Fxin),
+                    .Clk(Clk), 
+                    .Frequency(Frequency));
                      
 //     PeriodicMeter U12(.Pxin(Pxin),
    //                  .Clk(Clk),
