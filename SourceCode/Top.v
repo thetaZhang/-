@@ -34,7 +34,7 @@ module Top(
     );
     reg [31:0]Number=32'h12345678;    //example of a number for display ,you can modify here for your number to display.;
     wire Fxin,Pxin,Dxin;
-    reg [31:0]Frequency;
+    wire [31:0]Frequency;
     //wire [15:0]Periodic;
     //wire [15:0]Duty;
     
@@ -46,7 +46,7 @@ module Top(
 
     always @(Frequency)
     begin
-        Number<=Frequency;
+        Number=Frequency;
     end
 
 

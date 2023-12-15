@@ -26,7 +26,7 @@ module FrequencyMeter (
     output reg[31:0] Frequency
     );
     
-    reg Gate_Signal;
+    wire Gate_Signal;
     reg[31:0] Wave_Count;
 
 
