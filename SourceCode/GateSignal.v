@@ -31,7 +31,7 @@ module GateSignal (
                 Gate_Signal<=~Gate_Signal;
             end
         else
-            Clk_Count<=Clk_Count+1'b1;
+            Clk_Count<=Clk_Count+28'b1;
         
     end
 endmodule

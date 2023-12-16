@@ -27,24 +27,24 @@ module FrequencyMeter (
     );
     
     wire Gate_Signal;
-    reg[13:0] Wave_Count;
-    reg[13:0] BinaryFrequency;
+    reg[13:0] Wave_Count=14'b0;
+    reg[13:0] BinaryFrequency=14'b0;
 
 
     always @(posedge Fxin) 
     begin
-        if (Gate_Signal)
-            Wave_Count<=Wave_Count+1'b1;        
-        else 
-            Wave_Count<=14'b0;
-
+        if (Gate_Signal==1)
+            Wave_Count<=Wave_Count+14'b1;        
+        else if (Gate_Signal==0)
+        begin
+            if (Wave_Count!=0)
+            begin
+                BinaryFrequency<=Wave_Count;
+                Wave_Count<=14'b0;
+            end
+        end
     end
 
-    always @(negedge Gate_Signal)
-    begin
-        BinaryFrequency<=Wave_Count;
-        
-    end
 
     GateSignal myGateSignal (
         .Clk(Clk),
