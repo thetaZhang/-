@@ -23,11 +23,12 @@
 module FrequencyMeter (
     input Fxin,
     inout Clk,
-    output reg[31:0] Frequency
+    output [15:0] Frequency
     );
     
     wire Gate_Signal;
-    reg[31:0] Wave_Count;
+    reg[13:0] Wave_Count;
+    reg[13:0] BinaryFrequency;
 
 
     always @(posedge Fxin) 
@@ -35,18 +36,22 @@ module FrequencyMeter (
         if (Gate_Signal)
             Wave_Count<=Wave_Count+1'b1;        
         else 
-            Wave_Count<=32'b0;
+            Wave_Count<=14'b0;
 
     end
 
     always @(negedge Gate_Signal)
     begin
-        Frequency<=Wave_Count;
+        BinaryFrequency<=Wave_Count;
         
     end
 
     GateSignal myGateSignal (
         .Clk(Clk),
         .Gate_Signal(Gate_Signal));
+
+    BinaryToBCD myBinaryToBCD (
+        .Binary(BinaryFrequency),
+        .BCD(Frequency));
 
 endmodule
