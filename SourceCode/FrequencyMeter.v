@@ -22,7 +22,7 @@
 
 module FrequencyMeter (
     input Fxin,
-    inout Clk,
+    input Clk,
     output [15:0] Frequency
     );
     
@@ -36,15 +36,13 @@ module FrequencyMeter (
         if (Gate_Signal==1)
             Wave_Count<=Wave_Count+14'b1;        
         else if (Gate_Signal==0)
-        begin
-            if (Wave_Count!=0)
-            begin
-                BinaryFrequency<=Wave_Count;
-                Wave_Count<=14'b0;
-            end
-        end
+            Wave_Count<=14'b0;
     end
     
+    always @(negedge Gate_Signal)
+    begin
+        BinaryFrequency<=Wave_Count;
+    end
 
     GateSignal myGateSignal (
         .Clk(Clk),
