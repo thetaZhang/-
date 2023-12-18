@@ -44,7 +44,7 @@ module Top(
     //these two sentence above is to control the dp for display, as above value of these sentences, 
     // the result is show as 1.2345.678, you can modify the subscript number of DigitlaSel for your own needs.
 
-    always @(negedge start) 
+    always @(posedge start) 
     begin
         st_en<=1'b1;
     end
