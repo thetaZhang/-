@@ -69,7 +69,7 @@ set_property PACKAGE_PIN N4 [get_ports {sw[1]}]
 set_property PACKAGE_PIN R1 [get_ports {sw[0]}]
 
 set_property IOSTANDARD LVCMOS33 [get_ports start]
-set_property PACKAGE_PIN S2 [get_ports start]
+set_property PACKAGE_PIN R15 [get_ports start]
 
 #set_property IOSTANDARD LVCMOS33 [get_ports Button]
 #set_property PACKAGE_PIN V1 [get_ports Button]
