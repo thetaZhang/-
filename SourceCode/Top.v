@@ -24,6 +24,7 @@ module Top(
     input Clk,//clock, use the 100MHz clock source on the board by p17 pin
     input En,//enable,if enable ==0, the display is light off;
   //  input Button,
+  input start,
     input [7:0]sw,
     output [6:0] A_2_GRight4, //right 4 LED display digitals segment output
     output [6:0] A_2_GLeft4,//left 4 LED display digitals segment output
@@ -37,17 +38,24 @@ module Top(
     wire [15:0]Frequency;
     //wire [15:0]Periodic;
     //wire [15:0]Duty;
-    
+    reg st_en=1'b0;
     
     assign DpRight=DigitalSel[3];
     //these two sentence above is to control the dp for display, as above value of these sentences, 
     // the result is show as 1.2345.678, you can modify the subscript number of DigitlaSel for your own needs.
 
+    always @(negedge start) 
+    begin
+        st_en<=1'b1;
+    end
 
     always @(Frequency)
     begin
+        if (st_en)
+        begin
         Number[15:0]<=Frequency;
         Number[31:16]<=16'hFFFF;
+        end
     end
 
 
