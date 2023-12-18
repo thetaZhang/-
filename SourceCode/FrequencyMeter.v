@@ -29,19 +29,28 @@ module FrequencyMeter (
     wire Gate_Signal;
     reg[13:0] Wave_Count=14'b0;
     reg[13:0] BinaryFrequency=14'b0;
+    reg rst=1'b0;
 
-
-    always @(posedge Fxin ) 
+    always @(posedge Fxin or posedge rst) 
     begin
+        if (rst)
+        begin
+            Wave_Count<=14'b0;
+            rst<=~rst;
+        end
+        else 
+        begin
         if (Gate_Signal==1)
             Wave_Count<=Wave_Count+14'b1;        
         else if (Gate_Signal==0)
             Wave_Count<=14'b0;
+        end
     end
     
     always @(negedge Gate_Signal)
     begin
         BinaryFrequency<=Wave_Count;
+        rst<=~rst;
     end
 
     GateSignal myGateSignal (
