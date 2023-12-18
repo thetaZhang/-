@@ -25,7 +25,7 @@ module GateSignal (
     reg[27:0] Clk_Count;
     always @(posedge Clk)   //set 1s gate signal
     begin
-        if (Clk_Count>=27'd10000000) 
+        if (Clk_Count>=27'd100000000) 
             begin
                 Clk_Count<=28'b0;
                 Gate_Signal<=~Gate_Signal;
