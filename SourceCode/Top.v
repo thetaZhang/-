@@ -33,7 +33,7 @@ module Top(
     output DpRight//dp for right 4 digitals 
     
     );
-    reg [31:0]Number=32'h12345678;    //example of a number for display ,you can modify here for your number to display.;
+    reg [31:0]Number=32'h31910129;    //example of a number for display ,you can modify here for your number to display.;
     wire Fxin,Pxin,Dxin;
     wire [15:0]Frequency;
     //wire [15:0]Periodic;
